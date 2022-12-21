@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ApiResponse } from 'misc/api.response.class';
+import { ArgumentOutOfRangeError } from 'rxjs';
+import { AdministratorController } from 'src/controllers/api/administrator.controller';
 import { AddAdministratorDto } from 'src/dtos/administrator/add.administrator.dto';
 import { EditAdministratorDto } from 'src/dtos/administrator/edit.administrator.dto';
 import { Repository } from 'typeorm';
+import { PlainObjectToNewEntityTransformer } from 'typeorm/query-builder/transformer/PlainObjectToNewEntityTransformer';
 import { Administrator } from '../../../entities/administrator.entity';
 
 
@@ -11,7 +14,7 @@ import { Administrator } from '../../../entities/administrator.entity';
 export class AdministratorService {
     constructor(
         @InjectRepository(Administrator)
-        private readonly  administrator: Repository<Administrator> 
+        private readonly  administrator: Repository<Administrator>
     )  { }
 
    getAll(): Promise<Administrator[]> {
@@ -41,6 +44,7 @@ export class AdministratorService {
         .catch(error => {
         const response: any = new ApiResponse("error", -1001);
             resolve(response);
+
         });
         
       }); 
@@ -61,9 +65,6 @@ export class AdministratorService {
           return this.administrator.save(admin);
       }
 
-   }
-     
-
-
+    }
   
 
