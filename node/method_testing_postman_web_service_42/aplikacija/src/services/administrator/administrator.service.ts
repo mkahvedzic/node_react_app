@@ -22,8 +22,8 @@ export class AdministratorService {
 
    }
 
-  getById(id: any): Promise<Administrator> {
-          return this.administrator.findOneBy(id);
+   getById(id: any): Promise<Administrator> {
+          return this.administrator.findOneById(id);
       }
    
   add(data: AddAdministratorDto): Promise<Administrator> | ApiResponse {
@@ -51,7 +51,7 @@ export class AdministratorService {
   }
 
       async editById(id: any, data: EditAdministratorDto): Promise<Administrator> {
-        let admin: Administrator = await this.administrator.findOneBy(id);
+        let admin: Administrator = await this.administrator.findOneById(id);
 
         const crypto = require('crypto');
 
