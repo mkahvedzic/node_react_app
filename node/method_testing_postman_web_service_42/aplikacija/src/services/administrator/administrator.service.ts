@@ -5,7 +5,7 @@ import { ArgumentOutOfRangeError } from 'rxjs';
 import { AdministratorController } from 'src/controllers/api/administrator.controller';
 import { AddAdministratorDto } from 'src/dtos/administrator/add.administrator.dto';
 import { EditAdministratorDto } from 'src/dtos/administrator/edit.administrator.dto';
-import { Repository } from 'typeorm';
+import { IsNull, Repository } from 'typeorm';
 import { PlainObjectToNewEntityTransformer } from 'typeorm/query-builder/transformer/PlainObjectToNewEntityTransformer';
 import { Administrator } from '../../../entities/administrator.entity';
 
@@ -53,7 +53,7 @@ export class AdministratorService {
       async editById(id: any, data: EditAdministratorDto): Promise<Administrator | ApiResponse> {
         let admin: Administrator = await this.administrator.findOneById(id);
 
-        if (admin === undefined) {
+        if (admin === undefined || admin == null) {
           return new Promise((resolve) => {
             resolve(new ApiResponse("error", -1002));
           });
