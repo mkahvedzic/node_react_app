@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm/dist';
-import { DatabaseConfiguration } from 'config/database.configuration';
 import { Administrator } from 'entities/administrator.entity';
 import { AdministratorService } from './services/administrator/administrator.service';
 import { ArticleFeature } from 'entities/article-feature.entity';
@@ -16,6 +15,7 @@ import { Order } from 'entities/order.entity';
 import { Photo } from 'entities/photo.entity';
 import { User } from 'entities/user.entity';
 import { AdministratorController } from './controllers/api/administrator.controller';
+import { DatabaseConfiguration } from 'config/database.configuration';
 
 
 @Module({
