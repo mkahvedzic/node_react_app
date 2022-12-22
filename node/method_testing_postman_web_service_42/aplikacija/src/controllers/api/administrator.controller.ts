@@ -4,6 +4,7 @@ import { ApiResponse } from "misc/api.response.class";
 import { AddAdministratorDto } from "../../../src/dtos/administrator/add.administrator.dto";
 import { AdministratorService } from "src/services/administrator/administrator.service";
 import { Admin } from "typeorm";
+import { resolve } from "path";
 
 @Controller('api/administrator')
 export class AdministratorController {
@@ -19,9 +20,17 @@ export class AdministratorController {
 
    
   @Get(':id') 
-  getById(@Param('id') administratorId: any): Promise<Administrator> {
-    
-    return this.administratorService.getById(administratorId);
+  getById(@Param('id') administratorId: any): Promise<Administrator | ApiResponse> {
+    return new Promise(async(resolve) => {
+    let admin = await this.administratorService.getById(administratorId);
+
+     if (admin === undefined) {
+      resolve(new ApiResponse("error", -1002));
+     }
+
+        resolve(admin);
+
+    });
 
   }
 
