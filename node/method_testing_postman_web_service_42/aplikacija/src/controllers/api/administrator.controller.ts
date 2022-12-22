@@ -31,7 +31,7 @@ export class AdministratorController {
   } 
 
   @Post(':id')
-  edit(@Param('id') id: number, @Body() data: AddAdministratorDto): Promise<Administrator> {
+  edit(@Param('id') id: number, @Body() data: AddAdministratorDto): Promise<Administrator | ApiResponse> {
          return this.administratorService.editById(id, data);
   }
 

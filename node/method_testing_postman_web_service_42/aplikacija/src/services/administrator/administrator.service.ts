@@ -50,8 +50,14 @@ export class AdministratorService {
       }); 
   }
 
-      async editById(id: any, data: EditAdministratorDto): Promise<Administrator> {
+      async editById(id: any, data: EditAdministratorDto): Promise<Administrator | ApiResponse> {
         let admin: Administrator = await this.administrator.findOneById(id);
+
+        if (admin === undefined) {
+          return new Promise((resolve) => {
+            resolve(new ApiResponse("error", -1002));
+          });
+        }
 
         const crypto = require('crypto');
 
