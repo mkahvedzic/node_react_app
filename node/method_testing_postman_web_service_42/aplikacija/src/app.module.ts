@@ -16,6 +16,8 @@ import { Photo } from 'entities/photo.entity';
 import { User } from 'entities/user.entity';
 import { AdministratorController } from './controllers/api/administrator.controller';
 import { DatabaseConfiguration } from 'config/database.configuration';
+import { CategoryController } from './controllers/api/category.controller';
+import { CategoryService } from './services/category/category.service';
 
 
 @Module({
@@ -42,12 +44,19 @@ import { DatabaseConfiguration } from 'config/database.configuration';
 
       ]
     }),
-    TypeOrmModule.forFeature([ Administrator ])
+    TypeOrmModule.forFeature([ 
+      Administrator,
+      Category
+     ])
   ],
   controllers: [
     AppController,
     AdministratorController,
+    CategoryController,
   ],
-  providers: [AppService, AdministratorService],
+  providers: [AppService, 
+    AdministratorService,
+    CategoryService,
+  ],
 })
 export class AppModule {}
