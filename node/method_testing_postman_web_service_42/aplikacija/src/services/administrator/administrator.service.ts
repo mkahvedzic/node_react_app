@@ -5,9 +5,9 @@ import { ArgumentOutOfRangeError } from 'rxjs';
 import { AdministratorController } from 'src/controllers/api/administrator.controller';
 import { AddAdministratorDto } from 'src/dtos/administrator/add.administrator.dto';
 import { EditAdministratorDto } from 'src/dtos/administrator/edit.administrator.dto';
-import { IsNull, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { PlainObjectToNewEntityTransformer } from 'typeorm/query-builder/transformer/PlainObjectToNewEntityTransformer';
-import { Administrator } from '../../../entities/administrator.entity';
+import { Administrator } from 'entities/administrator.entity';
 
 
 @Injectable()
